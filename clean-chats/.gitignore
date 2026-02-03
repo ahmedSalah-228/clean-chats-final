@@ -1,0 +1,14 @@
+# Ignore everything by default
+*
+
+# But track these specific files
+!clean_chats_core.py
+!clean_chats_config.py
+!clean_chats_storage.py
+!clean_chats_integration.py
+
+# Track .gitignore itself
+!.gitignore
+
+# Track README if we create one
+!README.md

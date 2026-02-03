@@ -18,7 +18,7 @@ from clean_chats_core import (
 )
 from clean_chats_storage import (
     save_clean_chats_summary,
-    save_clean_chats_details,
+    save_clean_chats_raw_data,
     get_clean_chats_summary_report,
     get_clean_chats_detail_report
 )
@@ -60,7 +60,7 @@ def run_clean_chats_analysis(session, target_date=None, save_to_database=True):
             )
             
             # Save detailed data
-            detail_success = save_clean_chats_details(
+            detail_success = save_clean_chats_raw_data(
                 session, results['department_results'], target_date
             )
             
@@ -122,7 +122,7 @@ def run_single_department_clean_chats(session, department_name, target_date=None
             )
             
             # Save detailed data
-            detail_success = save_clean_chats_details(
+            detail_success = save_clean_chats_raw_data(
                 session, department_results, target_date
             )
             
@@ -145,7 +145,8 @@ def run_single_department_clean_chats(session, department_name, target_date=None
             'success': False,
             'error': str(e),
             'department': department_name,
-            'target_date': target_date
+            'target_date': target_date,
+            'department_results': results
         }
 
 def test_clean_chats_setup(session, department_name=None):
